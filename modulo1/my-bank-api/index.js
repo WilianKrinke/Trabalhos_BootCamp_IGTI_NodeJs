@@ -21,17 +21,23 @@ app.use('/account', accountRouter)
 
 app.listen(3000, async () => {
     try {
-        await readFile('accounts.json')        
+        await readFile('accounts.json')
+        console.log('Listen')        
     } catch (error) {
+        
         const initialJson = {
             nextId: 1,
             accounts: []
         }
 
-        writeFile('accounts.json', JSON.stringify(initialJson))
+        writeFile('accounts.json', JSON.stringify(initialJson)).then(() => {
+            console.log('Listen')
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
-    console.log('Listen')
+    
 })
 
 
