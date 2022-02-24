@@ -58,6 +58,32 @@ router.delete('/:id', async(req, res, next) => {
     }
 })
 
+router.put('/', async(req, res, next) => {
+    try {
+        const account = req.body;
+
+        const data = JSON.parse(await readFile(accountJsonFileName));
+        const index = data.accounts.findIndex(item => item.id === account.id)
+
+        console.log('Chegou aqui')
+        data.accounts[index] = account;
+        await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
+
+        res.status(200).send('Changed')
+
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.patch('/update-balance',async(req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.use((err, req, res, next) => {
     console.log(err)
     res.status(400).send(err.message)
