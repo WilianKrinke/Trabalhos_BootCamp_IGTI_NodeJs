@@ -1,1 +1,20 @@
-{"nextId":2,"accounts":[{"id":1,"name":"Wilian Krinke","balance":200}]}
+{
+  "nextId": 4,
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Wilian Krinke",
+      "balance": 200
+    },
+    {
+      "id": 2,
+      "name": "Wilian Krinke2",
+      "balance": 2003
+    },
+    {
+      "id": 3,
+      "name": "Wilian Krinke3",
+      "balance": 2003
+    }
+  ]
+}

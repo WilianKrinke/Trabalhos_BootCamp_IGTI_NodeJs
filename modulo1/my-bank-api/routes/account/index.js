@@ -15,9 +15,9 @@ router.post('/', async (req, res) => {
         }
              
         data.accounts.push(accountReceived);    
-        await writeFile('accounts.json', JSON.stringify(data));
+        await writeFile('accounts.json', JSON.stringify(data, null, 2));
 
-        res.status(200).send('Account created: ' + accountReceived);       
+        res.status(200).send('Account created: ' + JSON.stringify(accountReceived));       
     } catch (error) {
         res.status(400).send(error.message)
     }
