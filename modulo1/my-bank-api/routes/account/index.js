@@ -6,7 +6,7 @@ const router = express.Router()
 
 const accountJsonFileName = 'accounts.json'
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
     try {
         let accountReceived = req.body;    
         const data = JSON.parse(await readFile(accountJsonFileName));
@@ -21,11 +21,11 @@ router.post('/', async (req, res) => {
 
         res.status(200).send('Account created: ' + JSON.stringify(accountReceived));       
     } catch (error) {
-        res.status(400).send(error.message)
+        next(error)
     }
 })
 
-router.get('/:id?', async (req, res) => {
+router.get('/:id?', async (req, res, next) => {
     try {
         const {id} = req.params
 
@@ -39,11 +39,11 @@ router.get('/:id?', async (req, res) => {
             res.status(200).send(JSON.stringify(accounts))
         }        
     } catch (error) {
-        res.status(400).send(error.message)
+        next(error)
     }
 })
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async(req, res, next) => {
     try {
         const {id} = req.params
 
@@ -54,8 +54,13 @@ router.delete('/:id', async(req, res) => {
 
         res.status(200).send('Deleted');
     } catch (error) {
-        res.status(400).send(error.message)
+        next(error)
     }
+})
+
+router.use((err, req, res, next) => {
+    console.log(err)
+    res.status(400).send(err.message)
 })
 
 
