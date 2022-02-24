@@ -1,5 +1,6 @@
 import express from "express";
 import { promises as fs } from 'fs';
+import loggerWinston from '../../logs/logs.js';
 
 const {readFile, writeFile} = fs
 const router = express.Router()
@@ -37,7 +38,7 @@ router.get('/:id?', async (req, res, next) => {
         } else {
             const {accounts} = JSON.parse(await readFile(accountJsonFileName));
             res.status(200).send(JSON.stringify(accounts))
-        }        
+        }         
     } catch (error) {
         next(error)
     }
@@ -85,7 +86,8 @@ router.patch('/update-balance',async(req, res, next) => {
 })
 
 router.use((err, req, res, next) => {
-    console.log(err)
+    console.log(err.message)
+    loggerWinston.error(err.message)
     res.status(400).send(err.message)
 })
 

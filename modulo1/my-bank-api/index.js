@@ -7,15 +7,13 @@ const {readFile, writeFile} = fs
 const app = express()
 app.use(express.json())
 
-
 app.use('/account', accountRouter)
 
 app.listen(3000, async () => {
     try {
         await readFile('accounts.json')
         console.log('Listen')        
-    } catch (error) {
-        
+    } catch (error) {        
         const initialJson = {
             nextId: 1,
             accounts: []
@@ -26,9 +24,7 @@ app.listen(3000, async () => {
         }).catch((error) => {
             console.log(error)
         })
-    }
-
-    
+    }    
 })
 
 
