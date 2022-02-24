@@ -9,12 +9,18 @@ const accountJsonFileName = 'accounts.json'
 
 router.post('/', async (req, res, next) => {
     try {
-        let accountReceived = req.body;    
+        let accountReceived = req.body;  
+        
+        if (!accountReceived || !accountReceived.name || accountReceived.balance == null) {
+            throw new Error('Datas is not defined')
+        }  
+        
         const data = JSON.parse(await readFile(accountJsonFileName));
 
         accountReceived = {
             id: data.nextId++,
-            ...accountReceived
+            name: accountReceived.name,
+            balance: accountReceived.balance
         }
              
         data.accounts.push(accountReceived);    
@@ -63,11 +69,20 @@ router.put('/', async(req, res, next) => {
     try {
         const account = req.body;
 
+        if (!account || !account.name || account.balance == null || !account.id) {
+            throw new Error('Id, Name and Balance is required')
+        }
+
         const data = JSON.parse(await readFile(accountJsonFileName));
         const index = data.accounts.findIndex(item => item.id === account.id)
 
-        console.log('Chegou aqui')
-        data.accounts[index] = account;
+        if (index === -1) {
+            throw new Error('Not Find')
+        }
+
+        data.accounts[index].name = account.name;
+        data.accounts[index].balance = account.balance;
+
         await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
 
         res.status(200).send('Changed')
@@ -79,7 +94,23 @@ router.put('/', async(req, res, next) => {
 
 router.patch('/update-balance',async(req, res, next) => {
     try {
-        
+        const account = req.body;
+
+        if (!account.id || account.balance == null) {
+            throw new Error('Id and Balance is required')
+        }
+
+        const data = JSON.parse(await readFile(accountJsonFileName));
+        const index = data.accounts.findIndex(item => item.id === account.id)
+
+        if (index === -1) {
+            throw new Error('Not Find')
+        }
+
+        data.accounts[index].balance = account.balance;
+        await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
+
+        res.status(200).send('Changed')
     } catch (error) {
         next(error)
     }
@@ -87,7 +118,7 @@ router.patch('/update-balance',async(req, res, next) => {
 
 router.use((err, req, res, next) => {
     console.log(err.message)
-    loggerWinston.error(err.message)
+    loggerWinston.error(`${req.method} | ${req.baseUrl}: ${err.message}`)
     res.status(400).send(err.message)
 })
 
