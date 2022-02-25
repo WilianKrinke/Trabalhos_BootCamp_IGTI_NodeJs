@@ -5,6 +5,7 @@ import brandHasFewerModels from '../services/brandHasFewerModels.js';
 import brandHasFewerModelsNumber from "../services/brandHasFewerModelsNumber.js";
 import brandHasMoreModels from "../services/brandHasMoreModels.js";
 import brandHasMoreModelsNumber from "../services/brandHasMoreModelsNumber.js";
+import filteredByBrand from "../services/filteredByBrand.js";
 
 const {readFile, writeFile} = fs
 
@@ -41,7 +42,6 @@ router.get('/brand-has-more-models-number/:qtd',async(req, res, next) => {
         const data = JSON.parse(await readFile(carsJson)) 
 
         const dataOrdByModelsNumberAndQtd = brandHasMoreModelsNumber(data, qtd)
-        console.log(dataOrdByModelsNumberAndQtd)
 
         res.status(200).send(JSON.stringify(dataOrdByModelsNumberAndQtd))
     } catch (error) {
@@ -56,7 +56,6 @@ router.get('/brand-has-fewer-models-number/:qtd',async(req, res, next) => {
         const data = JSON.parse(await readFile(carsJson)) 
 
         const dataOrdByModelsNumberAndQtd = brandHasFewerModelsNumber(data, qtd)
-        console.log(dataOrdByModelsNumberAndQtd)
 
         res.status(200).send(JSON.stringify(dataOrdByModelsNumberAndQtd))
     } catch (error) {
@@ -64,8 +63,17 @@ router.get('/brand-has-fewer-models-number/:qtd',async(req, res, next) => {
     }
 })
 
-router.post('/', (req, res) => {
-    console.log('Chamou Rota')
+router.post('/by-brand',async (req, res, next) => {
+    try {
+        const {nomeMarca} = req.body
+        const data = JSON.parse(await readFile(carsJson))
+
+        const dataFilteredByBrand = filteredByBrand(data, nomeMarca)
+
+        res.status(200).send(JSON.stringify(dataFilteredByBrand))
+    } catch (error) {
+        next(error)
+    }
 })
 
 router.use('/', (err, req, res, next) => {

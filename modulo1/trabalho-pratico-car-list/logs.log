@@ -20,3 +20,9 @@
 2022-02-24T23:33:27.301Z | cars api | error: element.sort is not a function
 
 2022-02-24T23:41:30.030Z | cars api | error: Cannot read properties of undefined (reading 'sort')
+
+2022-02-25T02:16:35.807Z | cars api | error: Cannot read properties of undefined (reading 'toLowerCase')
+
+2022-02-25T02:17:13.926Z | cars api | error: brand is not defined
+
+2022-02-25T02:18:44.659Z | cars api | error: brand is not defined
