@@ -13,7 +13,7 @@ const loggerWinston = winston.createLogger({
         new (winston.transports.File)({filename: 'logs.log'})        
     ],
     format: combine(
-        label({label: 'my-bank-api'}),
+        label({label: 'cars api'}),
         timestamp(),
         myFormatsLog
     )

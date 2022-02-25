@@ -1,0 +1,22 @@
+
+2022-02-24T22:37:40.566Z | my-bank-api | error: Unexpected token o in JSON at position 1
+
+2022-02-24T22:42:37.292Z | my-bank-api | error: Unexpected token o in JSON at position 1
+
+2022-02-24T22:44:44.940Z | my-bank-api | error: Unexpected token o in JSON at position 1
+
+2022-02-24T23:00:05.301Z | cars api | error: Unexpected token o in JSON at position 1
+
+2022-02-24T23:03:34.014Z | cars api | error: Unexpected token o in JSON at position 1
+
+2022-02-24T23:04:53.715Z | cars api | error: Unexpected token o in JSON at position 1
+
+2022-02-24T23:20:35.050Z | cars api | error: a is not defined
+
+2022-02-24T23:28:22.943Z | cars api | error: models.length.sort is not a function
+
+2022-02-24T23:29:31.147Z | cars api | error: models.length.sort is not a function
+
+2022-02-24T23:33:27.301Z | cars api | error: element.sort is not a function
+
+2022-02-24T23:41:30.030Z | cars api | error: Cannot read properties of undefined (reading 'sort')
