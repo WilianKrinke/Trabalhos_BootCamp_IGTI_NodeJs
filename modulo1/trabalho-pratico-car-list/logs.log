@@ -26,3 +26,11 @@
 2022-02-25T02:17:13.926Z | cars api | error: brand is not defined
 
 2022-02-25T02:18:44.659Z | cars api | error: brand is not defined
+
+2022-02-25T02:44:08.077Z | cars api | error: __dirname is not defined
+
+2022-02-25T02:47:15.130Z | cars api | error: __dirname is not defined
+
+2022-02-25T02:50:02.115Z | cars api | error: ENOENT: no such file or directory, open 'C:\Users\willk\Desktop\Git\Trabalhos_BootCamp_IGTI_NodeJs\modulo1\trabalho-pratico-car-list\infos\infos.txt'
+
+2022-02-25T02:50:21.903Z | cars api | error: The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received an instance of Object

@@ -17,8 +17,8 @@ router.get('/brand-has-more-models',async(req, res, next) => {
         const data = JSON.parse(await readFile(carsJson)) 
 
         const datasOrderedByMoreModels = brandHasMoreModels(data)
-        res.status(200).send(JSON.stringify(datasOrderedByMoreModels))
-        
+
+        res.status(200).send(JSON.stringify(datasOrderedByMoreModels))        
     } catch (error) {
         next(error)
     }
@@ -29,6 +29,7 @@ router.get('/brand-has-fewer-models',async(req, res, next) => {
         const data = JSON.parse(await readFile(carsJson))  
               
         const datasOrderedByFewerModels = brandHasFewerModels(data)
+
         res.status(200).send(JSON.stringify(datasOrderedByFewerModels))
 
     } catch (error) {
