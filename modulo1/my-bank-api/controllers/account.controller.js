@@ -1,13 +1,12 @@
-import express from "express";
+import express from 'express';
 import { promises as fs } from 'fs';
-import loggerWinston from '../../logs/logs.js';
 
 const {readFile, writeFile} = fs
 const router = express.Router()
 
 const accountJsonFileName = 'accounts.json'
 
-router.post('/', async (req, res, next) => {
+export async function createAccount(req, res, next){
     try {
         let accountReceived = req.body;  
         
@@ -30,9 +29,10 @@ router.post('/', async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
+}
 
-router.get('/:id?', async (req, res, next) => {
+
+export async function getAccount(req, res, next){
     try {
         const {id} = req.params
 
@@ -48,9 +48,9 @@ router.get('/:id?', async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
+}
 
-router.delete('/:id', async(req, res, next) => {
+export async function deleteAccount(req, res, next){
     try {
         const {id} = req.params
 
@@ -63,9 +63,9 @@ router.delete('/:id', async(req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
+}
 
-router.put('/', async(req, res, next) => {
+export async function upDateAccount(req, res, next){
     try {
         const account = req.body;
 
@@ -90,9 +90,9 @@ router.put('/', async(req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
+}
 
-router.patch('/update-balance',async(req, res, next) => {
+export async function upDateBalance(req, res, next){
     try {
         const account = req.body;
 
@@ -114,13 +114,4 @@ router.patch('/update-balance',async(req, res, next) => {
     } catch (error) {
         next(error)
     }
-})
-
-router.use((err, req, res, next) => {
-    console.log(err.message)
-    loggerWinston.error(`${req.method} | ${req.baseUrl}: ${err.message}`)
-    res.status(400).send(err.message)
-})
-
-
-export default router;
+}
