@@ -1,14 +1,14 @@
 import express from "express";
-import { createAccount, deleteAccount, getAccount, upDateAccount, upDateBalance } from "../controllers/account.controller.js";
+import { createAccountController, deleteAccountController, getAccountController, upDateAccountController, upDateBalanceController } from "../controllers/account.controller.js";
 import loggerWinston from '../logs/logs.js';
 
 const router = express.Router()
 
-router.post('/', createAccount)
-router.get('/:id?', getAccount)
-router.delete('/:id', deleteAccount)
-router.put('/', upDateAccount)
-router.patch('/update-balance', upDateBalance)
+router.post('/', createAccountController)
+router.get('/:id?', getAccountController)
+router.delete('/:id', deleteAccountController)
+router.put('/', upDateAccountController)
+router.patch('/update-balance', upDateBalanceController)
 
 router.use((err, req, res, next) => {
     console.log(err.message)
