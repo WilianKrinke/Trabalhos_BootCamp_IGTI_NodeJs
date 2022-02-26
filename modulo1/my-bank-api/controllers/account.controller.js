@@ -48,7 +48,7 @@ export async function upDateAccountController(req, res, next){
             throw new Error('Id, Name and Balance is required')
         }
 
-        await upDateAccountService()
+        await upDateAccountService(account)
 
         res.status(200).send('Changed')
     } catch (error) {
@@ -59,12 +59,13 @@ export async function upDateAccountController(req, res, next){
 export async function upDateBalanceController(req, res, next){
     try {
         const account = req.body;
+        console.log(account)
 
         if (!account.id || account.balance == null) {
             throw new Error('Id and Balance is required')
         }
 
-        await upDateBalanceService()
+        await upDateBalanceService(account)
 
         res.status(200).send('Changed')
     } catch (error) {

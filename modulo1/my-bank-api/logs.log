@@ -2,3 +2,17 @@
 2022-02-24T18:53:57.746Z | my-bank-api | error: TESTE DE LOG
 
 2022-02-24T18:54:10.643Z | my-bank-api | error: TESTE DE LOG
+
+2022-02-26T02:28:11.601Z | my-bank-api | error: POST | /account: Datas is not defined
+
+2022-02-26T02:40:17.171Z | my-bank-api | error: DELETE | /account: Cannot read properties of undefined (reading 'filter')
+
+2022-02-26T02:41:21.666Z | my-bank-api | error: DELETE | /account: Cannot read properties of undefined (reading 'filter')
+
+2022-02-26T02:43:41.087Z | my-bank-api | error: POST | /account: Cannot read properties of undefined (reading 'push')
+
+2022-02-26T02:50:54.371Z | my-bank-api | error: PATCH | /account: account is not defined
+
+2022-02-26T02:51:35.852Z | my-bank-api | error: PATCH | /account: account is not defined
+
+2022-02-26T02:52:10.144Z | my-bank-api | error: PATCH | /account: account is not defined
