@@ -1,15 +1,18 @@
+import { createOrderServices } from "../services/createOrder.services.js"
 
-export function createOrderController(req, res, next){
+export async function createOrderController(req, res, next){
     try {
-        //const {cliente, produto, valor} = req.body
         const data = req.body
-        console.log(data)
 
-       
-       
-        console.log('Chegou requisição')
+        if (!data.cliente || !data.produto || !data.valor) {
+            throw new Error('Preencha todos os Campos')
+        }
+
+        createOrderServices(data)
+
         res.status(200).send('Okay')
     } catch (error) {
         console.log(error.message)
+        res.status(400).send(error.message)
     }
 }
