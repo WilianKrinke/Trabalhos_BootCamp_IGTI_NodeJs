@@ -4004,9 +4004,9 @@
     },
     {
       "id": 502,
-      "cliente": "Algum Cliente",
-      "produto": "Algum Produto",
-      "valor": 50,
+      "cliente": "Algum Outro Cliete Alterado",
+      "produto": "Algum Outro Produto Alterado",
+      "valor": 5000,
       "entregue": false,
       "timestamp": "2022-02-26T22:36:59.390Z"
     }
