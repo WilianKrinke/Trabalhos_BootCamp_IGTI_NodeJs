@@ -1,12 +1,10 @@
 import express from "express";
-import route from "./routes/teste.route.js";
+import routes from "./routes/delivery.routes.js";
 
 const app = express()
 
+app.use('/delivery', routes)
 
-app.use('/teste', route)
-
-
-app.listen(3000, ()=>{
+app.listen(3000, () => {
     console.log('Listen 3000')
 })
