@@ -1,4 +1,4 @@
-import { createAccountService, deleteAccountService, getAccountServices, upDateAccountService, upDateBalanceService } from '../services/account.services';
+import { createAccountService, deleteAccountService, getAccountServices, upDateAccountService, upDateBalanceService } from '../services/account.services.js';
 
 export async function createAccountController(req, res, next){
     try {

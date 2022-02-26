@@ -1,4 +1,4 @@
-import { getAccountRepository, writeAccountRepository } from '../repositories/account.repository';
+import { getAccountRepository, writeAccountRepository } from '../repositories/account.repository.js';
 
 export async function createAccountService(accountReceived){
     const data = getAccountRepository()
