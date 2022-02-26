@@ -64,7 +64,6 @@ export async function upDateBalanceController(req, res, next){
             throw new Error('Id and Balance is required')
         }
 
-
         await upDateBalanceService()
 
         res.status(200).send('Changed')

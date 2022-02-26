@@ -1,10 +1,7 @@
-import { promises as fs } from 'fs';
-
-const {readFile, writeFile} = fs
-const accountJsonFileName = 'accounts.json'
+import { getAccountRepository, writeAccountRepository } from '../repositories/account.repository';
 
 export async function createAccountService(accountReceived){
-    const data = JSON.parse(await readFile(accountJsonFileName));
+    const data = getAccountRepository()
 
     accountReceived = {
         id: data.nextId++,
@@ -13,32 +10,32 @@ export async function createAccountService(accountReceived){
     }
          
     data.accounts.push(accountReceived);    
-    await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
+    await writeAccountRepository(data);
 
     return accountReceived
 }
 
 export async function getAccountServices(id){
     if (id !== undefined) {
-        const {accounts} = JSON.parse(await readFile(accountJsonFileName));
+        const {accounts} = getAccountRepository()
         const singleData = accounts.filter((item) => item.id === parseInt(id));
 
         return singleData;
     } else {
-        const {accounts} = JSON.parse(await readFile(accountJsonFileName));
+        const {accounts} = getAccountRepository()
         return accounts;
     }
 }
 
 export async function deleteAccountService(id){
-    const data = JSON.parse(await readFile(accountJsonFileName));
+    const data = getAccountRepository()
     data.accounts = data.accounts.filter(item => item.id !== parseInt(id));
 
-    await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
+    await writeAccountRepository(data);
 }
 
 export async function upDateAccountService(){
-    const data = JSON.parse(await readFile(accountJsonFileName));
+    const data = getAccountRepository()
     const index = data.accounts.findIndex(item => item.id === account.id)
 
     if (index === -1) {
@@ -48,11 +45,11 @@ export async function upDateAccountService(){
     data.accounts[index].name = account.name;
     data.accounts[index].balance = account.balance;
 
-    await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
+    await writeAccountRepository(data);
 }
 
 export async function upDateBalanceService(){
-    const data = JSON.parse(await readFile(accountJsonFileName));
+    const data = getAccountRepository()
     const index = data.accounts.findIndex(item => item.id === account.id)
 
     if (index === -1) {
@@ -60,5 +57,5 @@ export async function upDateBalanceService(){
     }
 
     data.accounts[index].balance = account.balance;
-    await writeFile(accountJsonFileName, JSON.stringify(data, null, 2));
+    await writeAccountRepository(data);
 }
