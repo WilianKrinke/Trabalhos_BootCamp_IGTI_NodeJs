@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 
-const {readFile, writeFile} = fs
+const {readFile} = fs
 const allOrdersJson = 'pedidos.json'
 
 export async function getNextId(){
