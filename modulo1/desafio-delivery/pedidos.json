@@ -1,5 +1,5 @@
 {
-  "nextId": 503,
+  "nextId": 504,
   "pedidos": [
     {
       "id": 1,
@@ -2524,14 +2524,6 @@
       "timestamp": "2021-05-02T19:48:09.766Z"
     },
     {
-      "id": 317,
-      "cliente": "Gedeão Saloio",
-      "produto": "Pizza Atum",
-      "valor": 32,
-      "entregue": true,
-      "timestamp": "2021-05-02T19:48:09.766Z"
-    },
-    {
       "id": 318,
       "cliente": "Bento Torcato",
       "produto": "Pizza Muçarela",
@@ -4001,6 +3993,14 @@
       "valor": 50,
       "entregue": false,
       "timestamp": "2022-02-26T22:36:41.310Z"
+    },
+    {
+      "id": 503,
+      "cliente": "Rosaura Azenha",
+      "produto": "Pizza Pepperoni",
+      "valor": 32.5,
+      "entregue": true,
+      "timestamp": "2022-02-27T21:05:46.753Z"
     }
   ]
 }
