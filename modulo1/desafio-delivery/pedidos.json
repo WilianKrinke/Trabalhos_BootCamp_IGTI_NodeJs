@@ -4007,8 +4007,8 @@
       "cliente": "Algum Outro Cliete Alterado",
       "produto": "Algum Outro Produto Alterado",
       "valor": 5000,
-      "entregue": false,
-      "timestamp": "2022-02-26T22:36:59.390Z"
+      "timestamp": "2022-02-26T22:36:59.390Z",
+      "entregue": false
     }
   ]
 }
