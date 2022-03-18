@@ -1,11 +1,11 @@
-import express from "express";
-import winston from "winston";
-import accountsRouter from "./routes/account.routes.js"
-import { promises as fs } from "fs";
 import cors from "cors";
+import express from "express";
+import basicAuth from "express-basic-auth";
+import { promises as fs } from "fs";
 import swaggerUi from "swagger-ui-express";
-import { swaggerDocument } from "./doc.js"
-import basicAuth from "express-basic-auth"
+import winston from "winston";
+import { swaggerDocument } from "./doc.js";
+import accountsRouter from "./routes/account.routes.js";
 
 const { readFile, writeFile } = fs;
 
