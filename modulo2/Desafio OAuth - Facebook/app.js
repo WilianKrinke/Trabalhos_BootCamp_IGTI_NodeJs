@@ -65,6 +65,8 @@ app.get('/auth/google/callback',
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook',  { successRedirect : '/', failureRedirect: '/login' }),
   function(req, res) {
+    console.log(req.body)
+   
     res.redirect('/');
   }
 );
