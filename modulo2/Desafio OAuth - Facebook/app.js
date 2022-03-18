@@ -48,28 +48,31 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google',  { successRedirect : '/page1', failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  }
+);
+
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook',  { successRedirect : '/page1', failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  }
+);
+
 app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-
-app.get('/auth/google/callback', 
-  passport.authenticate('google',  { successRedirect : '/', failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
-
-app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook',  { successRedirect : '/', failureRedirect: '/login' }),
-  function(req, res) {
-    console.log(req.body)
-   
-    res.redirect('/');
-  }
-);
+app.get('/page1', (req, res, next) => {
+  res.render('page1');
+})
 
 app.get('/logout', function(req, res){
   req.logout();
