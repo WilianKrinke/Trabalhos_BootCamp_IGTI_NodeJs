@@ -1,3 +1,4 @@
+import path from 'path';
 import AccountService from "../services/account.service.js";
 
 async function createAccount(req, res, next) {
@@ -16,6 +17,9 @@ async function createAccount(req, res, next) {
 
 async function getAccounts(req, res, next) {
     try {
+        console.log(path.resolve())
+        
+
         res.send(await AccountService.getAccounts());
         logger.info("GET /account");
     } catch (err) {
