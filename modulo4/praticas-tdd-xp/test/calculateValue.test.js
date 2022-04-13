@@ -1,4 +1,4 @@
-import calculateAmount from '.././src/calculateValue'
+const calculateAmount = require('.././src/calculateValue')
 
 test('Should returning money amount', () => {
     const amount = calculateAmount(100,0.0175,1)
