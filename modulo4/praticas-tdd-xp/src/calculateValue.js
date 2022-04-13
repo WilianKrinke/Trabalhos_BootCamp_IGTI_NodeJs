@@ -4,4 +4,10 @@ function calculateAmount(capital, rate, period) {
     return amount;
 }
 
-module.exports = calculateAmount;
+function roundFunction(number) {
+    const roundNumber = Math.round(number)
+
+    return roundNumber;
+}
+
+module.exports = {calculateAmount, roundFunction};
