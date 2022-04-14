@@ -10,4 +10,12 @@ function roundFunction(number) {
     return roundNumber;
 }
 
-module.exports = {calculateAmount, roundFunction};
+function calculateInstallments(value, installments) {
+    const baseInstallment = roundFunction(value / installments)
+
+    const result = Array(installments).fill(baseInstallment)
+
+    return result;
+}
+
+module.exports = {calculateAmount, roundFunction, calculateInstallments};

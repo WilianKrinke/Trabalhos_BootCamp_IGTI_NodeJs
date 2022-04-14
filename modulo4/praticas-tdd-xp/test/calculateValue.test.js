@@ -1,4 +1,4 @@
-const {calculateAmount, roundFunction} = require('.././src/calculateValue')
+const {calculateAmount, roundFunction, calculateInstallments} = require('.././src/calculateValue')
 
 describe('mathematical operations tests', () => {
     test('should returning money amount', () => {
@@ -12,6 +12,28 @@ describe('mathematical operations tests', () => {
 
         expect(round).toBe(16)
     })
+
+    test('calculate installments', () => {
+        //premissas/dado(giver)
+        const installmentsNumber = 6
+
+        //operações/quando(when)
+        const installments = calculateInstallments(250,installmentsNumber)
+
+        //resultado esperado/então(then)
+        expect(installments.length).toBe(installmentsNumber)
+    });
+
+    test('single installment, equal amount', () => {
+        const installmentsNumber = 1
+
+        const installments = calculateInstallments(50, installmentsNumber)
+
+        expect(installments.length).toBe(installmentsNumber)
+        expect(installments[0]).toBe(50)
+    });
+    
+    
     
 });
 
