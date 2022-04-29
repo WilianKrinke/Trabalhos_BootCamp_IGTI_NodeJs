@@ -1,6 +1,6 @@
 import { insertClientService } from "../services/cliente.services.js";
 
-export function insertClientController(req, res, next){
+export async function insertClientController(req, res, next){
     try {
         const datas = req.body;
             
@@ -8,15 +8,17 @@ export function insertClientController(req, res, next){
             throw new Error('Preencha todos os campos')
         }
 
-        const wasRegistered = insertClientService(datas)
+        const wasRegistered = await insertClientService(datas)
 
-        res.status(200).send(datas)
+        if (wasRegistered) {
+            res.status(200).send('Customer has been registered')
+        } else {
+            throw new Error('Customer has not been registered')
+        }
 
     } catch (error) {
         next(error)
     }
-
-    
 }
 
 export function getClientController(req, res, next){
