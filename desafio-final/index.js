@@ -1,4 +1,5 @@
 import express from "express";
+import clientRoute from './src/routes/clientes.routes.js';
 
 const app = express()
 app.use(express.json())

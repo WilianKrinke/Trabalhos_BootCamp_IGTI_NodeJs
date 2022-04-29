@@ -1,9 +1,16 @@
 import express from "express";
-import { deleteClient, getClient, insertClient, updateClient } from "../controllers/clientes.controller";
+import { deleteClientController, getClientController, insertClientController, updateClientController } from "../controllers/clientes.controller.js";
 
 const router = express.Router()
 
-router.post('/insert', insertClient)
-router.get('/get/:id?', getClient)
-router.put('/update', updateClient)
-router.delete('/delete/:id', deleteClient)
+router.post('/insert', insertClientController)
+router.get('/get/:id?', getClientController)
+router.put('/update', updateClientController)
+router.delete('/delete/:id', deleteClientController)
+
+router.use((err, req, res, next) => {
+    console.log(err.message)
+    res.status(400).send(err.message)
+})
+
+export default router;
