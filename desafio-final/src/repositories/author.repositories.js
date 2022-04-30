@@ -11,6 +11,25 @@ export async function insertAuthorRepositories(datas){
     }
 }
 
+export async function getAuthorAllDatasRepositories(){
+    const allAuthorDatas = await AuthorTable.findAll({
+        attributes:['nome', 'email', 'telefone']
+    })
+    
+    return allAuthorDatas
+}
+
+export async function getAuthorDataRepositories(id){
+    const authorData = await AuthorTable.findAll({
+        attributes:['nome', 'email', 'telefone'],
+        where:{
+            autorid: id
+        }
+    })
+
+    return authorData
+}
+
 export async function updateAuthorRepositories(datas){
     const hasUpdated = await AuthorTable.update(datas, {
         where:{

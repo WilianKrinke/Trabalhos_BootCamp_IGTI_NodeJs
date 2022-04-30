@@ -1,9 +1,10 @@
 import express from 'express';
-import { deleteAuthorController, insertAuthorController, updateAuthorController } from '../controllers/author.controller.js';
+import { deleteAuthorController, getAuthorController, insertAuthorController, updateAuthorController } from '../controllers/author.controller.js';
 
 const router = express.Router()
 
 router.post('/insert-author', insertAuthorController)
+router.get('/get-author/:id?', getAuthorController)
 router.put('/update-author', updateAuthorController)
 router.delete('/delete-author/:id', deleteAuthorController)
 

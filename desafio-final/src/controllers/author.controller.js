@@ -1,4 +1,4 @@
-import { deletAuthorServices, insertAuthorServices, updateAuthorServices } from "../services/author.services.js"
+import { deletAuthorServices, getAuthorAllDatasServices, getAuthorDataServices, insertAuthorServices, updateAuthorServices } from "../services/author.services.js"
 
 export async function insertAuthorController(req, res, next){
     try {
@@ -14,6 +14,23 @@ export async function insertAuthorController(req, res, next){
             res.status(200).send('Author has been registered')
         } else {
             throw new Error('Author has not been registered')
+        }
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function getAuthorController(req, res, next){
+    try {
+        const {id} = req.params
+        
+        if (id === undefined) {
+            const authorAllDatas = await getAuthorAllDatasServices()
+            res.status(200).send(authorAllDatas);
+        } else {
+            const authorData = await getAuthorDataServices(id)
+            res.status(200).send(authorData);
         }
 
     } catch (error) {
