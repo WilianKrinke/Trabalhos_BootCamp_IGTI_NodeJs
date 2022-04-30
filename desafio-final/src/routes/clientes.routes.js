@@ -3,10 +3,10 @@ import { deleteClientController, getClientController, insertClientController, up
 
 const router = express.Router()
 
-router.post('/insert', insertClientController)
-router.get('/get/:id?', getClientController)
-router.put('/update', updateClientController)
-router.delete('/delete/:id', deleteClientController)
+router.post('/insert-client', insertClientController)
+router.get('/get-client/:id?', getClientController)
+router.put('/update-client', updateClientController)
+router.delete('/delete-client/:id', deleteClientController)
 
 router.use((err, req, res, next) => {
     console.log(err.message)
