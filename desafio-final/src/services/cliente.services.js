@@ -1,4 +1,4 @@
-import { deleteClientRepositories, getAllDatasRepositories, getAllVendas, getClientDataRepositories, insertClientRepositories, updateClientRepositories } from "../repositories/cliente.repositories.js";
+import { deleteClientRepositories, getAllDatasRepositories, getAllSales, getClientDataRepositories, insertClientRepositories, updateClientRepositories } from "../repositories/cliente.repositories.js";
 import filterAllDatas from "../utils/filterAllDatas.js";
 import { clientIdInSales } from "../utils/haveClientIdInSales.js";
 
@@ -27,10 +27,10 @@ export async function updateClientService(datas){
 }
 
 export async function deleteClientService(id){    
-    const salesDatas = await getAllVendas()
-    const haveClientInSales = clientIdInSales(salesDatas, id)
+    const salesDatas = await getAllSales()
+    clientIdInSales(salesDatas, id)
 
-    if(haveClientInSales) return false;
+    
      
     const hasDelete = await deleteClientRepositories(id)
     return hasDelete;

@@ -1,4 +1,4 @@
-import { insertAuthorServices, updateAuthorServices } from "../services/author.services.js"
+import { deletAuthorServices, insertAuthorServices, updateAuthorServices } from "../services/author.services.js"
 
 export async function insertAuthorController(req, res, next){
     try {
@@ -35,6 +35,24 @@ export async function updateAuthorController(req, res, next){
             res.status(200).send('Author has been updated')            
         } else {
             throw new Error("Author has not been updated")
+        }
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function deleteAuthorController(req, res, next) {
+    try {
+        const {id} = req.params
+        console.log(id)
+
+        const hasDeleted = await deletAuthorServices(id)
+
+        if (hasDeleted) {
+            res.status(200).send('Author has been Deleted')
+        } else {
+            throw new Error('Author has not been deleted')
         }
 
     } catch (error) {
