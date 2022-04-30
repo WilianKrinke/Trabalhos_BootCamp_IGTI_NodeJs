@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import db from '../connection/db.js';
-import Cliente from './clientes.model';
-import Livro from './livros.model';
+import Cliente from './clientes.model.js';
+import Livro from './livros.model.js';
 
 const vendas_SEQ_MAP = db.define('vendas', {
     vendaid: {
