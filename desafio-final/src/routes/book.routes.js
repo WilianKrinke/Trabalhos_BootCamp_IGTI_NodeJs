@@ -8,11 +8,9 @@ router.get('/get-book/:id?', getBooksController)
 router.put('/update-books', updateBooksController)
 router.delete('/delete-book/:id', deleteBookController)
 
-
 router.use((err, req, res, next)=> {
     console.log(err.message)
     res.status(400).send(err.message)
 })
-
 
 export default router;
