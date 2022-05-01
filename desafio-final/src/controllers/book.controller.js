@@ -1,4 +1,4 @@
-import { deleteBookService, insertBooksServices, updateBooksServices } from "../services/books.services.js"
+import { allBookDatasServices, bookDataServices, deleteBookService, insertBooksServices, updateBooksServices } from "../services/books.services.js"
 
 export async function insertBooksController(req, res, next){
     try {
@@ -26,12 +26,13 @@ export async function getBooksController(req, res, next){
         const {id} = req.params;
 
         if (id === undefined) {
-            //all
+            const allBookDatas = await allBookDatasServices()
+            res.status(200).send(allBookDatas)
         } else {
-
+            const bookData = await bookDataServices(id)
+            res.status(200).send(bookData)
         }
-
-
+        
     } catch (error) {
         next(error)
     }

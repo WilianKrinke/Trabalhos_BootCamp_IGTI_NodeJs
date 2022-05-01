@@ -10,6 +10,22 @@ export async function insertBooksRepositories(datas){
     }
 }
 
+export async function allBookDatasRepositories(){
+    const allBookDatas = await BooksTable.findAll({
+        attribute:['nome', 'valor', 'valor', 'autorid']
+    })
+
+    return allBookDatas;
+}
+
+export async function bookDatasRepositories(id){
+    const bookDatas = await BooksTable.findAll({
+        where: {livroid: id}
+    })
+
+    return bookDatas;
+}
+
 export async function updateBooksRepositories(datas){
     const hasUpdated = await BooksTable.update(datas, {
         where:{livroid: datas.id}
