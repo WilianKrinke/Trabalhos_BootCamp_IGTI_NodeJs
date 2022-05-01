@@ -1,4 +1,4 @@
-import { allBookDatasServices, bookDataServices, deleteBookService, insertBooksServices, updateBooksServices } from "../services/books.services.js"
+import { allBookDatasServices, bookDataServices, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBooksServices, updateBooksServices } from "../services/books.services.js"
 
 export async function insertBooksController(req, res, next){
     try {
@@ -20,6 +20,26 @@ export async function insertBooksController(req, res, next){
     }
 }
 
+export async function insertBookInfoController(req, res, next){
+    try {
+        const bookInfoData = req.body
+
+        if (!bookInfoData.livroid || !bookInfoData.informacoes) {
+            throw new Error('Fill all fields')
+        }
+
+        const wasRegisteredInfo = await insertBookInfoServices(bookInfoData)
+        res.status(200).send(bookInfoData)
+
+
+
+
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 export async function getBooksController(req, res, next){
     try {
@@ -33,6 +53,18 @@ export async function getBooksController(req, res, next){
             res.status(200).send(bookData)
         }
         
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function getBooksByAuthorController(req, res, next){
+    try {
+        const {autoridpam} = req.params 
+
+        const booksByAuthor = await getBookByAuthorServices(autoridpam)
+        res.status(200).send(booksByAuthor)
+
     } catch (error) {
         next(error)
     }

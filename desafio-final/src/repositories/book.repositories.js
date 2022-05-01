@@ -10,6 +10,10 @@ export async function insertBooksRepositories(datas){
     }
 }
 
+export async function insertBookInfoRepositories(bookInfoData){
+    //inserir no mongodb
+}
+
 export async function allBookDatasRepositories(){
     const allBookDatas = await BooksTable.findAll({
         attribute:['nome', 'valor', 'valor', 'autorid']
@@ -24,6 +28,15 @@ export async function bookDatasRepositories(id){
     })
 
     return bookDatas;
+}
+
+export async function getBookByAuthorRepositories(autoridpam){
+    const bookByAuthor = await BooksTable.findAll({
+        attributes:['nome', 'valor', 'valor', 'autorid'],
+        where:{autorid: autoridpam}
+    })
+
+    return bookByAuthor;
 }
 
 export async function updateBooksRepositories(datas){
