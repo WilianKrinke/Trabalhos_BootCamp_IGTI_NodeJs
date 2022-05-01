@@ -58,7 +58,7 @@ export async function deleteClientRepositories(id){
 
 export async function getAllSales(){
     const salesDatas = await VendasTable.findAll({
-        attributes: ['clienteid']
+        attributes: ['clienteid', 'livroid']
     })
     return salesDatas;
 }
