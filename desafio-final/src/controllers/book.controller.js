@@ -28,20 +28,14 @@ export async function getBooksController(req, res, next){
         if (id === undefined) {
             //all
         } else {
-            
+
         }
-
-
 
 
     } catch (error) {
         next(error)
     }
 }
-
-
-
-
 
 
 export async function updateBooksController(req, res, next){

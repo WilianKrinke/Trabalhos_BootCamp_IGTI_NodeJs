@@ -4,10 +4,9 @@ import { deleteBookController, getBooksController, insertBooksController, update
 const router = express.Router()
 
 router.post('/insert-books', insertBooksController)
+router.get('/get-book/:id?', getBooksController)
 router.put('/update-books', updateBooksController)
 router.delete('/delete-book/:id', deleteBookController)
-router.get('/get-book/:id?', getBooksController)
-
 
 
 router.use((err, req, res, next)=> {
