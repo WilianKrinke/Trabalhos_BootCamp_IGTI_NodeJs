@@ -29,6 +29,38 @@ export async function insertBookInfoRepositories(data){
     }   
 }
 
+export async function insertBookReviewRepositories(datas){
+    const mongoClient = mongoClientFunction()
+    try {
+        await mongoClient.connect()
+        const bookInMongo = await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .findOne({livroid: datas.livroid})
+
+        bookInMongo.avaliacoes.splice(0, bookInMongo.avaliacoes.length)
+        bookInMongo.avaliacoes.push(datas.note)
+        bookInMongo.avaliacoes.push(datas.review)
+
+        await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .updateOne(
+                {livroid: datas.livroid},
+                {$set: {
+                    ...bookInMongo
+                }}
+            )
+        
+    } catch (error) {
+        console.log(error.message)
+        throw new Error('Book info has not been registered')
+    } finally {
+        mongoClient.close();
+        return true
+    }
+}
+
 export async function allBookDatasRepositories(){
     const allBookDatas = await BooksTable.findAll({
         attribute:['nome', 'valor', 'valor', 'autorid']

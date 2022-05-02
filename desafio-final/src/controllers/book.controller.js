@@ -1,4 +1,4 @@
-import { allBookDatasServices, bookDataServices, deleteBookInfoService, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBooksServices, updateBookInfoService, updateBooksServices } from "../services/books.services.js"
+import { allBookDatasServices, bookDataServices, deleteBookInfoService, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBookReviewService, insertBooksServices, updateBookInfoService, updateBooksServices } from "../services/books.services.js"
 
 export async function insertBookController(req, res, next){
     try {
@@ -29,7 +29,7 @@ export async function insertBookInfoController(req, res, next){
         }
 
         await insertBookInfoServices(data)
-        res.status(200).send('Bookinfo has been registered')
+        res.status(200).send('Book info has been registered')
 
     } catch (error) {
         next(error)
@@ -45,7 +45,9 @@ export async function insertBookReviewController(req, res, next){
             throw new Error('Fill all fields')
         }
 
-        
+        await insertBookReviewService(datas)
+        res.status(200).send(`Review has been registered in book id ${datas.livroid}`)
+
     } catch (error) {
         next(error)
     }
@@ -141,5 +143,13 @@ export async function deleteBookInfoController(req, res, next){
         
     } catch (error) {
         next(error)
+    }
+}
+
+export async function deleteBookReviewController(req, res, next){
+    try {
+        //deletar review
+    } catch (error) {
+        
     }
 }

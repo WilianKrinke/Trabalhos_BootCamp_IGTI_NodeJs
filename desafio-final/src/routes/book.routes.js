@@ -12,6 +12,7 @@ router.put('/update-book', updateBookController)
 router.put('/update-info-book', updateBookInfoController)
 router.delete('/delete-book/:id', deleteBookController)
 router.delete('/delete-info/:id', deleteBookInfoController)
+router.delete('/delete-book-review/:id', deleteBookReviewController)
 
 
 router.use((err, req, res, next)=> {
