@@ -1,6 +1,6 @@
-import { allBookDatasServices, bookDataServices, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBooksServices, updateBooksServices } from "../services/books.services.js"
+import { allBookDatasServices, bookDataServices, deleteBookInfoService, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBooksServices, updateBookInfoService, updateBooksServices } from "../services/books.services.js"
 
-export async function insertBooksController(req, res, next){
+export async function insertBookController(req, res, next){
     try {
         const datas = req.body
         if (!datas.nome || !datas.valor || !datas.estoque || !datas.autorid) {
@@ -22,24 +22,34 @@ export async function insertBooksController(req, res, next){
 
 export async function insertBookInfoController(req, res, next){
     try {
-        const bookInfoData = req.body
+        const data = req.body
 
-        if (!bookInfoData.livroid || !bookInfoData.informacoes) {
+        if (!data.livroid || !data.descricao || !data.paginas || !data.editora) {
             throw new Error('Fill all fields')
         }
 
-        const wasRegisteredInfo = await insertBookInfoServices(bookInfoData)
-        res.status(200).send(bookInfoData)
-
-
-
-
+        await insertBookInfoServices(data)
+        res.status(200).send('Bookinfo has been registered')
 
     } catch (error) {
         next(error)
     }
 }
 
+
+export async function insertBookReviewController(req, res, next){
+    try {
+        const datas = req.body
+
+        if (!datas.livroid || !datas.note || !datas.review ) {
+            throw new Error('Fill all fields')
+        }
+
+        
+    } catch (error) {
+        next(error)
+    }
+}
 
 export async function getBooksController(req, res, next){
     try {
@@ -60,9 +70,9 @@ export async function getBooksController(req, res, next){
 
 export async function getBooksByAuthorController(req, res, next){
     try {
-        const {autoridpam} = req.params 
+        const {autoridparam} = req.params 
 
-        const booksByAuthor = await getBookByAuthorServices(autoridpam)
+        const booksByAuthor = await getBookByAuthorServices(autoridparam)
         res.status(200).send(booksByAuthor)
 
     } catch (error) {
@@ -71,7 +81,7 @@ export async function getBooksByAuthorController(req, res, next){
 }
 
 
-export async function updateBooksController(req, res, next){
+export async function updateBookController(req, res, next){
     try {
         const datas = req.body
         if (!datas.id || !datas.nome || !datas.valor || !datas.estoque || !datas.autorid) {
@@ -91,6 +101,22 @@ export async function updateBooksController(req, res, next){
     }
 }
 
+export async function updateBookInfoController(req, res, next){
+    try {
+        const data = req.body
+
+        if (!data.livroid || !data.descricao || !data.paginas || !data.editora) {
+            throw new Error('Fill all fields')
+        }
+
+        await updateBookInfoService(data)
+        res.status(200).send('Book info has been updated')
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 export async function deleteBookController(req, res, next){
     try {
         const {id} = req.params
@@ -101,6 +127,18 @@ export async function deleteBookController(req, res, next){
         } else {
             throw new Error('Book has not been deleted')
         }
+    } catch (error) {
+        next(error)
+    }
+}
+
+export async function deleteBookInfoController(req, res, next){
+    try {
+        const {id} = req.params
+        await deleteBookInfoService(id)
+
+        res.status(200).send('Book info has been deleted')
+        
     } catch (error) {
         next(error)
     }

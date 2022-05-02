@@ -1,4 +1,4 @@
-import { allBookDatasRepositories, bookDatasRepositories, deleteBookRepositories, getBookByAuthorRepositories, insertBookInfoRepositories, insertBooksRepositories, updateBooksRepositories } from "../repositories/book.repositories.js";
+import { allBookDatasRepositories, bookDatasRepositories, deleteBookInfoRepositories, deleteBookRepositories, getBookByAuthorRepositories, insertBookInfoRepositories, insertBooksRepositories, updateBookInfoRepositories, updateBooksRepositories } from "../repositories/book.repositories.js";
 import { getAllSales } from "../repositories/cliente.repositories.js";
 import bookHaveSales from "../utils/bookHaveSales.js";
 import filterAllDatas from "../utils/filterAllDatas.js";
@@ -8,8 +8,9 @@ export async function insertBooksServices(datas){
     return wasRegistered;
 }
 
-export async function insertBookInfoServices(bookInfoData){
-    const wasRegisteredInfo = await insertBookInfoRepositories(bookInfoData)
+export async function insertBookInfoServices(data){
+    const wasRegisteredInfo = await insertBookInfoRepositories(data)
+    return wasRegisteredInfo
 }
 
 export async function allBookDatasServices(){
@@ -24,8 +25,8 @@ export async function bookDataServices(id){
     return filteredBookData;
 }
 
-export async function getBookByAuthorServices(autoridpam){
-    const booksByAuthor = await getBookByAuthorRepositories(autoridpam)
+export async function getBookByAuthorServices(autoridparam){
+    const booksByAuthor = await getBookByAuthorRepositories(autoridparam)
 
     const filteredBookByAuthorData = filterAllDatas(booksByAuthor)
     return filteredBookByAuthorData;
@@ -36,10 +37,20 @@ export async function updateBooksServices(datas){
     return hasUpdated
 }
 
+export async function updateBookInfoService(data){
+    const hasUpdated = await updateBookInfoRepositories(data)
+    return hasUpdated
+}
+
 export async function deleteBookService(id){
     const salesDatas = await getAllSales()
     bookHaveSales(salesDatas, id)
     
     const hasDeleted = await deleteBookRepositories(id)
+    return hasDeleted;
+}
+
+export async function deleteBookInfoService(id){
+    const hasDeleted = await deleteBookInfoRepositories(id)
     return hasDeleted;
 }

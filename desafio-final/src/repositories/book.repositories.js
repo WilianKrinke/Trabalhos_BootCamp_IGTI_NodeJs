@@ -1,3 +1,4 @@
+import mongoClientFunction from '../connection/nosql.db.js'
 import BooksTable from '../models/livros.model.js'
 
 export async function insertBooksRepositories(datas){
@@ -10,8 +11,22 @@ export async function insertBooksRepositories(datas){
     }
 }
 
-export async function insertBookInfoRepositories(bookInfoData){
-    //inserir no mongodb
+export async function insertBookInfoRepositories(data){
+    const mongoClient = mongoClientFunction()
+    try {
+        await mongoClient.connect()
+        await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .insertOne(data)
+        
+    } catch (error) {
+        console.log(error.message)
+        throw new Error('Book info has not been registered')
+    } finally {
+        mongoClient.close();
+        return true
+    }   
 }
 
 export async function allBookDatasRepositories(){
@@ -30,10 +45,10 @@ export async function bookDatasRepositories(id){
     return bookDatas;
 }
 
-export async function getBookByAuthorRepositories(autoridpam){
+export async function getBookByAuthorRepositories(autoridparam){
     const bookByAuthor = await BooksTable.findAll({
         attributes:['nome', 'valor', 'valor', 'autorid'],
-        where:{autorid: autoridpam}
+        where:{autorid: autoridparam}
     })
 
     return bookByAuthor;
@@ -51,10 +66,51 @@ export async function updateBooksRepositories(datas){
     }
 }
 
+export async function updateBookInfoRepositories(data){
+    const mongoClient = mongoClientFunction()
+    try {
+        await mongoClient.connect()
+        await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .updateOne(
+                {livroid: data.livroid},
+                {$set: {
+                    ...data
+                }}
+            )
+        
+    } catch (error) {
+        console.log(error.message)
+        throw new Error('Book info has not been updated')
+    } finally {
+        mongoClient.close();
+        return true
+    }
+}
+
 export async function deleteBookRepositories(id){
     const hasDeleted = await BooksTable.destroy({
         where: {livroid: id}
     })
 
     return hasDeleted;
+}
+
+export async function deleteBookInfoRepositories(id){
+    const mongoClient = mongoClientFunction()
+    try {
+        await mongoClient.connect()
+        await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .deleteOne({livroid: parseInt(id)})
+        
+    } catch (error) {
+        console.log(error.message)
+        throw new Error('Book info has not been updated')
+    } finally {
+        mongoClient.close();
+        return true
+    }
 }
