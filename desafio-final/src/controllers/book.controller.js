@@ -24,7 +24,7 @@ export async function insertBookInfoController(req, res, next){
     try {
         const data = req.body
 
-        if (!data.livroid || !data.descricao || !data.paginas || !data.editora) {
+        if (!data.livroId || !data.descricao || !data.paginas || !data.editora) {
             throw new Error('Fill all fields')
         }
 
@@ -41,12 +41,12 @@ export async function insertBookReviewController(req, res, next){
     try {
         const datas = req.body
 
-        if (!datas.livroid || !datas.note || !datas.review ) {
+        if (!datas.livroId || !datas.note || !datas.review ) {
             throw new Error('Fill all fields')
         }
 
         await insertBookReviewService(datas)
-        res.status(200).send(`Review has been registered in book id ${datas.livroid}`)
+        res.status(200).send(`Review has been registered in book id ${datas.livroId}`)
 
     } catch (error) {
         next(error)
@@ -107,7 +107,7 @@ export async function updateBookInfoController(req, res, next){
     try {
         const data = req.body
 
-        if (!data.livroid || !data.descricao || !data.paginas || !data.editora) {
+        if (!data.livroId || !data.descricao || !data.paginas || !data.editora) {
             throw new Error('Fill all fields')
         }
 

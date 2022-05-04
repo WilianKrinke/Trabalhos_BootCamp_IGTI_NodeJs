@@ -36,7 +36,8 @@ export async function insertBookReviewRepositories(datas){
         const bookInMongo = await mongoClient
             .db('igti-desafio')
             .collection('store-igti-books')
-            .findOne({livroid: datas.livroid})
+            .findOne({livroId: datas.livroId})
+
 
         bookInMongo.avaliacoes.splice(0, bookInMongo.avaliacoes.length)
         bookInMongo.avaliacoes.push(datas.note)
@@ -46,7 +47,7 @@ export async function insertBookReviewRepositories(datas){
             .db('igti-desafio')
             .collection('store-igti-books')
             .updateOne(
-                {livroid: datas.livroid},
+                {livroId: datas.livroId},
                 {$set: {
                     ...bookInMongo
                 }}
@@ -106,7 +107,7 @@ export async function updateBookInfoRepositories(data){
             .db('igti-desafio')
             .collection('store-igti-books')
             .updateOne(
-                {livroid: data.livroid},
+                {livroId: data.livroId},
                 {$set: {
                     ...data
                 }}
@@ -136,7 +137,7 @@ export async function deleteBookInfoRepositories(id){
         await mongoClient
             .db('igti-desafio')
             .collection('store-igti-books')
-            .deleteOne({livroid: parseInt(id)})
+            .deleteOne({livroId: parseInt(id)})
         
     } catch (error) {
         console.log(error.message)
