@@ -15,7 +15,7 @@ const vendas_SEQ_MAP = db.define('vendas', {
         allowNull: false
     },
     venda_data:{
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
     }
 })
