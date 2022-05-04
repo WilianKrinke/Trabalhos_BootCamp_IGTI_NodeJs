@@ -8,7 +8,7 @@ router.post('/insert-sale', insertSaleController)
 
 
 router.use((err, req, res, next) => {
-    console.log(err.message)
+    console.log(err)
     res.status(400).send(err.message)
 })
 

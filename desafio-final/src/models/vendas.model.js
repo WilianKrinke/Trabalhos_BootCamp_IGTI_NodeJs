@@ -14,11 +14,11 @@ const vendas_SEQ_MAP = db.define('vendas', {
         type: Sequelize.NUMBER,
         allowNull: false
     },
-    vendaData:{
+    venda_data:{
         type: Sequelize.DATE,
         allowNull: false
     }
-}, {underscored: true})
+})
 
 vendas_SEQ_MAP.belongsTo(Cliente, {foreignKey: 'clienteid'})
 vendas_SEQ_MAP.belongsTo(Livro, {foreignKey: 'livroid'})
