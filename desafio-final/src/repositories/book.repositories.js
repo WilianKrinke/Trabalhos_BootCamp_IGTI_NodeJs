@@ -38,7 +38,6 @@ export async function insertBookReviewRepositories(datas){
             .collection('store-igti-books')
             .findOne({livroId: datas.livroId})
 
-
         bookInMongo.avaliacoes.splice(0, bookInMongo.avaliacoes.length)
         bookInMongo.avaliacoes.push(datas.note)
         bookInMongo.avaliacoes.push(datas.review)
@@ -138,6 +137,37 @@ export async function deleteBookInfoRepositories(id){
             .db('igti-desafio')
             .collection('store-igti-books')
             .deleteOne({livroId: parseInt(id)})
+        
+    } catch (error) {
+        console.log(error.message)
+        throw new Error('Book info has not been updated')
+    } finally {
+        mongoClient.close();
+        return true
+    }
+}
+
+export async function deleteBookReviewRepositories(id){
+    const mongoClient = mongoClientFunction()
+    
+    try {
+        await mongoClient.connect()
+        const bookInMongo = await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .findOne({livroId: parseInt(id)})
+
+        bookInMongo.avaliacoes.splice(0, bookInMongo.avaliacoes.length)
+
+        await mongoClient
+            .db('igti-desafio')
+            .collection('store-igti-books')
+            .updateOne(
+                {livroId: parseInt(id)},
+                {$set: {
+                    ...bookInMongo
+                }}
+            )
         
     } catch (error) {
         console.log(error.message)

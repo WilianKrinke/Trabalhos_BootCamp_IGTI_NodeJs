@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteBookController, deleteBookInfoController, getBooksByAuthorController, getBooksController, insertBookController, insertBookInfoController, insertBookReviewController, updateBookController, updateBookInfoController } from '../controllers/book.controller.js';
+import { deleteBookController, deleteBookInfoController, deleteBookReviewController, getBooksByAuthorController, getBooksController, insertBookController, insertBookInfoController, insertBookReviewController, updateBookController, updateBookInfoController } from '../controllers/book.controller.js';
 
 const router = express.Router()
 
@@ -12,7 +12,7 @@ router.put('/update-book', updateBookController)
 router.put('/update-info-book', updateBookInfoController)
 router.delete('/delete-book/:id', deleteBookController)
 router.delete('/delete-info/:id', deleteBookInfoController)
-//router.delete('/delete-book-review/:id', deleteBookReviewController)
+router.delete('/delete-book-review/:id', deleteBookReviewController)
 
 
 router.use((err, req, res, next)=> {

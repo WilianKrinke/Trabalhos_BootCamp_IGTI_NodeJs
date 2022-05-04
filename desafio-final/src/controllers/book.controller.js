@@ -1,4 +1,4 @@
-import { allBookDatasServices, bookDataServices, deleteBookInfoService, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBookReviewService, insertBooksServices, updateBookInfoService, updateBooksServices } from "../services/books.services.js"
+import { allBookDatasServices, bookDataServices, deleteBookInfoService, deleteBookReviewServices, deleteBookService, getBookByAuthorServices, insertBookInfoServices, insertBookReviewService, insertBooksServices, updateBookInfoService, updateBooksServices } from "../services/books.services.js"
 
 export async function insertBookController(req, res, next){
     try {
@@ -148,7 +148,11 @@ export async function deleteBookInfoController(req, res, next){
 
 export async function deleteBookReviewController(req, res, next){
     try {
-        //deletar review
+        const {id} = req.params
+        await deleteBookReviewServices(id)
+
+        res.status(200).send('Book review has been deleted')
+
     } catch (error) {
         
     }

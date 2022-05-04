@@ -1,4 +1,4 @@
-import { allBookDatasRepositories, bookDatasRepositories, deleteBookInfoRepositories, deleteBookRepositories, getBookByAuthorRepositories, insertBookInfoRepositories, insertBookReviewRepositories, insertBooksRepositories, updateBookInfoRepositories, updateBooksRepositories } from "../repositories/book.repositories.js";
+import { allBookDatasRepositories, bookDatasRepositories, deleteBookInfoRepositories, deleteBookRepositories, deleteBookReviewRepositories, getBookByAuthorRepositories, insertBookInfoRepositories, insertBookReviewRepositories, insertBooksRepositories, updateBookInfoRepositories, updateBooksRepositories } from "../repositories/book.repositories.js";
 import { getAllSales } from "../repositories/cliente.repositories.js";
 import bookHaveSales from "../utils/bookHaveSales.js";
 import filterAllDatas from "../utils/filterAllDatas.js";
@@ -57,5 +57,10 @@ export async function deleteBookService(id){
 
 export async function deleteBookInfoService(id){
     const hasDeleted = await deleteBookInfoRepositories(id)
+    return hasDeleted;
+}
+
+export async function deleteBookReviewServices(id){
+    const hasDeleted = await deleteBookReviewRepositories(id)
     return hasDeleted;
 }
