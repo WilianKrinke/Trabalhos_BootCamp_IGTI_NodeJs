@@ -1,12 +1,13 @@
 import express from 'express';
+import { authorizationCheck } from '../auth/authorizationCheck.js';
 import { deleteBookController, deleteBookInfoController, deleteBookReviewController, getBooksByAuthorController, getBooksController, insertBookController, insertBookInfoController, insertBookReviewController, updateBookController, updateBookInfoController } from '../controllers/book.controller.js';
 
 const router = express.Router()
 
-router.post('/insert-book', insertBookController)
+router.post('/insert-book', authorizationCheck, insertBookController)
 router.post('/insert-book-info', insertBookInfoController)
 router.post('/insert-book-review', insertBookReviewController)
-router.get('/get-book/:id?', getBooksController)
+router.get('/get-book/:id?', authorizationCheck, getBooksController)
 router.get('/get-book-by-author/:autoridparam', getBooksByAuthorController)
 router.put('/update-book', updateBookController)
 router.put('/update-info-book', updateBookInfoController)

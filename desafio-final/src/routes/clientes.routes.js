@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.post('/insert-client', insertClientController)
 router.get('/get-client/:id?', getClientController)
-router.put('/update-client', updateClientController)
+router.put('/update-client', updateClientController)//
 router.delete('/delete-client/:id', deleteClientController)
 
 router.use((err, req, res, next) => {
