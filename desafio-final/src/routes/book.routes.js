@@ -1,5 +1,5 @@
 import express from 'express';
-import { authorizationCheck } from '../auth/authorizationCheck.js';
+import { authorizationCheck } from '../auth/authorizationCheckNorm.js';
 import { deleteBookController, deleteBookInfoController, deleteBookReviewController, getBooksByAuthorController, getBooksController, insertBookController, insertBookInfoController, insertBookReviewController, updateBookController, updateBookInfoController } from '../controllers/book.controller.js';
 
 const router = express.Router()
